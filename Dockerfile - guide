@@ -1,0 +1,49 @@
+﻿#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+#FROM ubuntu:22.04
+
+#create an image  stage from "mcr.microsoft.com/dotnet/aspnet:6.0" and name it "base"
+#and create an "/app" folder inside this stage
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+
+#create a second image stage from "mcr.microsoft.com/dotnet/sdk:6.0" and name it "build"
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+#this create a folder inside the containe root folder of the stage "build" named "src"
+WORKDIR /src  
+#we are in stage "build"   
+#copy the "AsynWebApi.csproj" file to a folder inside the current working directory "src" named AsynWebApi
+COPY ["AsynWebApi.csproj", "AsynWebApi/"]
+
+#run the dotnet framework restore command against the project file located inside "src/AsynWebApi/" in the container
+RUN dotnet restore "AsynWebApi/AsynWebApi.csproj"
+
+#copy all the files from the host current directory to the container directory which contains the project that is "src/AsynWebApi"
+COPY . ./AsynWebApi
+
+#We are in "src" directory , change the working directory inside the container to "/src/AsynWebApi"
+WORKDIR "/src/AsynWebApi"
+
+#Execute the dotnet framework build command against
+#the /app/build directory will be created only when the build command runs and outputs a result
+#however the docker command to create the "app" folder into the base stage was first intitiated in the  the docker file
+#it will not be created physically untill it has something to contain inside.
+RUN dotnet build "AsynWebApi.csproj" -c Release -o /app/build
+
+#FROM build AS publish
+RUN dotnet publish "AsynWebApi.csproj" -c Release -o /app/publish
+
+#docker will always cancel and delete all the images until the last image FROM section
+#that results a minimum size image
+FROM base AS final
+#COPY --from=publish /app/publish .
+COPY --from=build /app/publish /app
+ENTRYPOINT ["dotnet", "AsynWebApi.dll"]
+
+#any cmd command means that when the container starts this commands will be executed despite the order these commands appears
+#in inside the docker file.
+#CMD ["echo", "Hello, Darwin"]
+#CMD ["sleep", "infinity"]

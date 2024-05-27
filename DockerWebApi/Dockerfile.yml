@@ -1,0 +1,7 @@
+﻿# Build Stage
+FROM  mcr.microsfot.com/dotnet/sdk:6.0-focal AS build
+WORKDIR /source
+COPY . . 
+RUN dotnet restore "./DockerWebApi/DockerWebApi.csproj" --disable-parallel"
+
+# Serve Stage 

@@ -1,0 +1,29 @@
+//build the image
+docker build -t dockapi .
+
+//run the container
+docker run --name dockapi -it  -p 5001:5001 dockapi dotnet DockerWebApi.dll --urls="http://0.0.0.0:5001"
+docker run --name dockapi -d  -p 5001:5001 dockapi dotnet DockerWebApi.dll --urls="http://0.0.0.0:5001"
+
+//start a container 
+docker start 30d072d2fb01
+
+//remove a container 
+docker rm  [container name/container id]
+
+//force remove used image 
+docker image rm -f dockapi
+
+//open the container shell bash screen interactivly using user ROOT
+docker exec -it -u root dockapi bash
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Jenkins
+
+#
+To install and enable pipline:
+From your Jenkins dashboard navigate to Manage Jenkins > 
+Manage Plugins and select the Available tab. Locate this plugin by searching for docker-workflow
+
+#

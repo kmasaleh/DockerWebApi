@@ -11,7 +11,7 @@ FROM base AS final
 COPY --from=build /app ./
 EXPOSE 5001
 
-#VOLUME ["/app/logs"]
+VOLUME ["/app/logs"]
 
 ENTRYPOINT ["dotnet","DockerWebApi.dll"]
 # Serve Stage 
@@ -23,4 +23,4 @@ ENTRYPOINT ["dotnet","DockerWebApi.dll"]
 #ENTRYPOINT []
 #docker run --name dockapi -it dockapi bash 
 
-#docker run --name dockapi -it  -p 5001:5001 dockapi dotnet DockerWebApi.dll --urls="http://0.0.0.0:5001"
+#docker run --name dockapi -d  -p 5001:5001 dockapi dotnet DockerWebApi.dll --urls="http://0.0.0.0:5001"

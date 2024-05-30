@@ -23,11 +23,11 @@ pipeline{
 				deleteDir()
 				// cleanWs()
 				script{
-					def var1 = BRANCH_START_WTH
-					println('BRANCH_START_WTH var is ${var1}')
-					echo 'BRANCH_START_WTH var is ${BRANCH_START_WTH}'
-					echo 'initiating application nana branch ... ${BRANCH_NAME} build bo ${BUILD_NUMBER}'
+					def buildNumber = env.BUILD_NUMBER
+                    echo "The current build number is: ${buildNumber}"
 				}
+				echo 'BRANCH_START_WTH var is ${BRANCH_START_WTH}'
+				echo 'initiating application nana branch ... ${BRANCH_NAME} build bo ${BUILD_NUMBER}'
 			}
 		}
 		stage('build'){

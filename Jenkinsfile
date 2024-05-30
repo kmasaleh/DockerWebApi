@@ -1,7 +1,7 @@
 def enableContentSecurityPolicyForReport(){
     script {System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; style-src 'self' 'unsafe-inline';");}
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 def  getGitChanges(){
 	echo 'checking if code changed ...'
 	def changes = false
@@ -15,8 +15,18 @@ def  getGitChanges(){
 	      // Add your actions here for when no changes are detected
     }
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+def restoreSolutionDependencies() {
+  echo "solution : ${params.PRJ_SLN_NAME}"
+  echo "framework : ${PRJ_TARGETED_FRAMEWORK}"
+  dotnetRestore project: "${params.PRJ_SLN_NAME}.sln", sdk: "dotnet${PRJ_TARGETED_FRAMEWORK}", verbosity: 'n'
+ // sh """#!/bin/bash
+ // ${DOTNET_CLI_HOME}//dotnet restore ${params.PRJ_SLN_NAME}.sln
+ // """
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 CODE_CHNAGES = getGitChanges()
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 pipeline{
 	agent any
 
@@ -42,6 +52,25 @@ pipeline{
 				}
 			}
 		}
+		
+		stage('Restore') {
+			when {expression {env.BRANCH_NAME.startsWith("${env.BRANCH_START_WTH}")}}
+			steps {
+					restoreSolutionDependencies()
+			}
+		}
+
+		stage('Restore Dependencies') {
+            steps {
+                // Navigate to the project directory
+               // dir('dotnet-project') {
+                    // Restore dependencies using dotnet restore
+                    //sh 'dotnet restore'
+                }
+            }
+        }
+
+
 		stage('build'){
 			when{
 				expression{

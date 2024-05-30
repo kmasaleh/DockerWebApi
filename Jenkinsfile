@@ -29,9 +29,9 @@ pipeline{
 				script{
 					def buildNumber = env.BUILD_NUMBER
                     echo "The current build number is: ${buildNumber}"
+					echo 'branch name is ${BRANCH_NAME}'
+
 				}
-				echo 'BRANCH_START_WTH var is ${BRANCH_START_WTH}'
-				echo 'initiating application nana branch ... ${BRANCH_NAME} build bo ${BUILD_NUMBER}'
 			}
 		}
 		stage('build'){

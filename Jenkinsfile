@@ -1,19 +1,23 @@
-pipeline {
-    agent any
-    triggers {
-        pollSCM '*/5 * * * *'
-    }
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-                
-            }
-        }
-        stage('check out'){
-            steps{
-                echo 'Checkout repository'
-            }
-        }
-    }
+pipeline{
+	agent any
+	stages{
+		stage('build'){
+			steps{
+				echo 'building application ...'
+			}
+		}
+		stage('test'){
+			steps{
+				echo 'testing application ...'
+			}
+		}
+
+		stage('deploy'){
+			steps{
+				echo 'deploying application ...'
+			}
+		}
+
+	}
+
 }

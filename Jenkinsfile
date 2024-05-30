@@ -57,7 +57,8 @@ pipeline{
 		stage('Restore') {
 			when {expression {env.BRANCH_NAME.startsWith("nana")}}
 			steps {
-					restoreSolutionDependencies()
+					sh 'ls'
+					//restoreSolutionDependencies()
 			}
 		}
 

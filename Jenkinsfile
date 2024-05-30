@@ -59,7 +59,13 @@ pipeline{
 			steps {
 					//restoreSolutionDependencies()
 					echo 'restore'
+					script {
+						def fileList = sh(script: 'ls', returnStdout: true).trim()
+					    echo "Available files in current directory: ${fileList}"
+				    }
+
 			}
+
 		}
 
 		stage('Restore Dependencies') {

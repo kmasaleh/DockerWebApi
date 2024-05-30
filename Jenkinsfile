@@ -28,12 +28,9 @@ def restoreSolutionDependencies() {
 CODE_CHNAGES = getGitChanges()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 pipeline{
-	
 	 agent {
         docker {
             image 'ubuntu:latest'
-			label 'docker'
-			//args '-u root'
         }
     }
 	 parameters {

@@ -1,11 +1,13 @@
 def  getGitChanges(){
 	echo 'cecking if code changed ...'
 	if(currentBuild.changeSets.size() > 0) {
+		echo 'code changed ...'
 		return true
 	}
 	else {
 		
 		//No changes
+		echo 'code did not changed ...'
 		return false
 	}
 }
@@ -15,11 +17,12 @@ pipeline{
 	agent any
 	stages{
 		stage('Init') {
-			when {expression {env.BRANCH_NAME.startsWith("${env.BRANCH_START_WTH}")}}
+			when {expression {env.BRANCH_NAME.startsWith("nana")}}
 			steps {
 				enableContentSecurityPolicyForReport()
 				deleteDir()
 				// cleanWs()
+				echo ' env.BRANCH_START_WTH :  ${env.BRANCH_START_WTH}'
 				echo 'initiating application nana branch ... ${env.BRANCH_NAME} build bo ${env.BUILD_NUMBER}'
 			}
 		}

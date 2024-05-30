@@ -60,7 +60,7 @@ pipeline{
 					sh '''
 					 #!/bin/bash
 						ls >> files.txt
-						cat files.txt 
+						cat files.txt | echo
 						'''
 					//restoreSolutionDependencies()
 			}
@@ -69,7 +69,7 @@ pipeline{
 		stage('Restore Dependencies') {
             steps {
                 // Navigate to the project directory
-                dir('dotnet-project') {
+                dir('DockerWebApi') {
                     // Restore dependencies using dotnet restore
                     //sh 'dotnet restore'
                 }

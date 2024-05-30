@@ -17,13 +17,13 @@ pipeline{
 	agent any
 	stages{
 		stage('Init') {
-			//when {expression {env.BRANCH_NAME.startsWith("nana")}}
+			when {expression {env.BRANCH_NAME.startsWith("nana")}}
 			steps {
 			//	enableContentSecurityPolicyForReport()
 				deleteDir()
 				// cleanWs()
-				//echo 'BRANCH_START_WTH var is ${env.BRANCH_START_WTH}'
-				//echo 'initiating application nana branch ... ${env.BRANCH_NAME} build bo ${env.BUILD_NUMBER}'
+				echo 'BRANCH_START_WTH var is ${env.BRANCH_START_WTH}'
+				echo 'initiating application nana branch ... ${env.BRANCH_NAME} build bo ${env.BUILD_NUMBER}'
 			}
 		}
 		stage('build'){

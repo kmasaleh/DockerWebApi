@@ -23,7 +23,7 @@ pipeline{
 		stage('Init') {
 			when {expression {env.BRANCH_NAME.startsWith("nana")}}
 			steps {
-				enableContentSecurityPolicyForReport()
+				//enableContentSecurityPolicyForReport()
 				deleteDir()
 				// cleanWs()
 				script{

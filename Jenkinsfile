@@ -19,6 +19,13 @@ def  getGitChanges(){
 CODE_CHNAGES = getGitChanges()
 pipeline{
 	agent any
+
+
+	 parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
+        booleanParam(name: 'DEPLOY_TO_PROD', defaultValue: false, description: 'Deploy to production')
+    }
+
 	stages{
 		stage('Init') {
 			when {expression {env.BRANCH_NAME.startsWith("nana")}}

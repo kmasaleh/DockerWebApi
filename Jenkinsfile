@@ -38,7 +38,7 @@ pipeline{
 		stage('build'){
 			when{
 				expression{
-					env.BRANCHNAME == 'nana' //&& env.CODE_CHNAGES==true
+					env.BRANCH_NAME == 'nana' //&& env.CODE_CHNAGES==true
 				}
 			}
 			steps{

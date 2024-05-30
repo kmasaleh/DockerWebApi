@@ -22,10 +22,12 @@ pipeline{
 			//	enableContentSecurityPolicyForReport()
 				deleteDir()
 				// cleanWs()
-				def var1 = BRANCH_START_WTH
-				println('BRANCH_START_WTH var is ${var1}')
-				echo 'BRANCH_START_WTH var is ${BRANCH_START_WTH}'
-				echo 'initiating application nana branch ... ${BRANCH_NAME} build bo ${BUILD_NUMBER}'
+				script{
+					def var1 = BRANCH_START_WTH
+					println('BRANCH_START_WTH var is ${var1}')
+					echo 'BRANCH_START_WTH var is ${BRANCH_START_WTH}'
+					echo 'initiating application nana branch ... ${BRANCH_NAME} build bo ${BUILD_NUMBER}'
+				}
 			}
 		}
 		stage('build'){

@@ -31,6 +31,7 @@ pipeline{
 	 agent {
         docker {
             image 'ubuntu:latest'
+			params '-u root'
         }
     }
 	 parameters {

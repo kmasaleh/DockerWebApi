@@ -63,10 +63,10 @@ pipeline{
 		stage('Restore Dependencies') {
             steps {
                 // Navigate to the project directory
-               // dir('dotnet-project') {
+                dir('dotnet-project') {
                     // Restore dependencies using dotnet restore
                     //sh 'dotnet restore'
-                //}
+                }
             }
         }
 

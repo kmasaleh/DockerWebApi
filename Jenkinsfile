@@ -54,7 +54,7 @@ pipeline{
 		}
 		
 		stage('Restore') {
-			when {expression {env.BRANCH_NAME.startsWith("${env.BRANCH_START_WTH}")}}
+			when {expression {env.BRANCH_NAME.startsWith("nana")}}
 			steps {
 					restoreSolutionDependencies()
 			}

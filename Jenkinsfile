@@ -4,10 +4,11 @@ pipeline{
 		stage('build'){
 			when{
 				expression{
+					env.BRANCHNAME == 'nana'
 				}
 			}
 			steps{
-				echo 'building application ...'
+				echo 'building application nana branch...'
 			}
 		}
 		stage('test'){

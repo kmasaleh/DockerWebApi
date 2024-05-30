@@ -29,7 +29,7 @@ pipeline{
 				script{
 					def buildNumber = env.BUILD_NUMBER
                     echo "The current build number is: ${buildNumber}"
-					def brnacheName = env.BRANCH_NAME
+					def brnachName = env.BRANCH_NAME
 					echo 'branch name is ${brnachName}'
 
 				}

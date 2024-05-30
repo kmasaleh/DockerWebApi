@@ -66,7 +66,7 @@ pipeline{
                // dir('dotnet-project') {
                     // Restore dependencies using dotnet restore
                     //sh 'dotnet restore'
-                }
+                //}
             }
         }
 

@@ -32,7 +32,7 @@ pipeline{
 
 
 	 parameters {
-		string(name:PRJ_TARGETED_FRAMEWORK,defaultValue:'8',description:'.Net Framework')
+		string(name:'PRJ_TARGETED_FRAMEWORK',defaultValue:'8',description:'.Net Framework')
         string(name: 'BRANCH_NAME', defaultValue: 'nana', description: 'Branch to build')
         booleanParam(name: 'DEPLOY_TO_PROD', defaultValue: true, description: 'Deploy to production')
     }

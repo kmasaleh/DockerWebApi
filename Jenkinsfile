@@ -58,6 +58,7 @@ pipeline{
 			when {expression {env.BRANCH_NAME.startsWith("nana")}}
 			steps {
 					//restoreSolutionDependencies()
+					echo 'restore'
 			}
 		}
 

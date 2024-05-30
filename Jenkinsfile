@@ -1,3 +1,7 @@
+def enableContentSecurityPolicyForReport(){
+    script {System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; style-src 'self' 'unsafe-inline';");}
+}
+
 def  getGitChanges(){
 	echo 'checking if code changed ...'
 	def changes = false
@@ -19,7 +23,7 @@ pipeline{
 		stage('Init') {
 			when {expression {env.BRANCH_NAME.startsWith("nana")}}
 			steps {
-			//	enableContentSecurityPolicyForReport()
+				enableContentSecurityPolicyForReport()
 				deleteDir()
 				// cleanWs()
 				script{
@@ -33,7 +37,7 @@ pipeline{
 		stage('build'){
 			when{
 				expression{
-					env.BRANCHNAME == 'nana' && env.CODE_CHNAGES==true
+					env.BRANCHNAME == 'nana' //&& env.CODE_CHNAGES==true
 				}
 			}
 			steps{

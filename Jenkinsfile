@@ -32,7 +32,7 @@ pipeline{
 
 
 	 parameters {
-        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
+        string(name: 'BRANCH_NAME', defaultValue: 'nana', description: 'Branch to build')
         booleanParam(name: 'DEPLOY_TO_PROD', defaultValue: false, description: 'Deploy to production')
     }
 

@@ -28,7 +28,14 @@ def restoreSolutionDependencies() {
 CODE_CHNAGES = getGitChanges()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 pipeline{
-	agent any
+	
+	 agent {
+        docker {
+            image 'ubuntu:latest'
+			label 'ubuntoDockerAgent'
+			args '-u root'
+        }
+    }
 	 parameters {
 		string(name:'PRJ_TARGETED_FRAMEWORK',defaultValue:'8',description:'.Net Framework')
         string(name: 'BRANCH_NAME', defaultValue: 'nana', description: 'Branch to build')

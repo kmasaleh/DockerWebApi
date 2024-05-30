@@ -28,7 +28,11 @@ def restoreSolutionDependencies() {
 CODE_CHNAGES = getGitChanges()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 pipeline{
-	agent any
+	docker {
+            image 'jenkins/agent:alpine-jdk11' // Replace with the Docker image name
+            label 'jenkins/agent-2' // Optional label to specify a specific Docker-capable agent
+            args '-u root' // Specify the user as root
+        }
 
 
 	 parameters {

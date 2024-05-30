@@ -22,8 +22,8 @@ pipeline{
 			//	enableContentSecurityPolicyForReport()
 				deleteDir()
 				// cleanWs()
-				echo 'BRANCH_START_WTH var is $env.BRANCH_START_WTH'
-				echo 'initiating application nana branch ... $env.BRANCH_NAME build bo $env.BUILD_NUMBER'
+				echo 'BRANCH_START_WTH var is ${BRANCH_START_WTH}'
+				echo 'initiating application nana branch ... ${BRANCH_NAME} build bo ${BUILD_NUMBER}'
 			}
 		}
 		stage('build'){

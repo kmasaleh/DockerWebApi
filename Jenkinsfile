@@ -59,7 +59,8 @@ pipeline{
 			steps {
 					sh '''
 					 #!/bin/bash
-						ls
+						ls > files.txt
+						cat files.txt 
 						'''
 					//restoreSolutionDependencies()
 			}

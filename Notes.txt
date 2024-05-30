@@ -19,11 +19,37 @@ docker exec -it -u root dockapi bash
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-Jenkins
+#Jenkins
+-Run Jenkins on Docker by using any available image on the internet
+-You may enter the docker container instance of Jenkins by using the Exec command and update the Jenkins version
+and install and other needed packages
 
-#
-To install and enable pipline:
-From your Jenkins dashboard navigate to Manage Jenkins > 
-Manage Plugins and select the Available tab. Locate this plugin by searching for docker-workflow
+========================================================================================================================================
+#To install and enable pipline:
+-From your Jenkins dashboard navigate to Manage Jenkins > 
+-Manage Plugins and select the Available tab. Locate this plugin by searching for docker-workflow
+========================================================================================================================================
+#To enable SSH on windows
+-I have to inastall the OpenSSH client and server
+- Start the sshd service
+Start-Service sshd
 
-#
+- OPTIONAL but recommended:
+Set-Service -Name sshd -StartupType 'Automatic'
+
+- Confirm the Firewall rule is configured. It should be created automatically by setup. Run the following to verify
+if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyContinue | Select-Object Name, Enabled)) {
+    Write-Output "Firewall Rule 'OpenSSH-Server-In-TCP' does not exist, creating it..."
+    New-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+} else {
+    Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
+}
+========================================================================================================================================
+#To make a docker container able to SSH a docker host (localhost)
+-Install ssh server in local host as previous
+-install ssh client on docker container as following
+*open the docker container bash using Exec
+*run apt update 
+*run apt install openssh-client
+*run  ssh ksaleh@host.docker.internal and provide the passwrod of the user ksaleh (for example)
+============================================================================================================================

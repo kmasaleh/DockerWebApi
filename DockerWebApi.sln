@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Dockerfile = Dockerfile
 		Dockerfile - guide = Dockerfile - guide
 		Jenkinsfile = Jenkinsfile
+		nana-jenkinsfile = nana-jenkinsfile
 		Notes.txt = Notes.txt
 	EndProjectSection
 EndProject

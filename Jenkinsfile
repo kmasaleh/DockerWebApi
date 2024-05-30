@@ -30,10 +30,10 @@ CODE_CHNAGES = getGitChanges()
 pipeline{
 	
 	 agent {
-        dockerContainer {
+        docker {
             image 'ubuntu:latest'
-			label 'ubuntoDockerAgent'
-			args '-u root'
+			label 'docker'
+			//args '-u root'
         }
     }
 	 parameters {

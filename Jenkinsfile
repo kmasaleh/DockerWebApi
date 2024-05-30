@@ -49,7 +49,7 @@ pipeline{
                     echo "The current build number is: ${buildNumber}"
 					def brnachName = env.BRANCH_NAME
 					echo "branch name is ${brnachName}"
-					sh 'ls'
+					
 				}
 			}
 		}
@@ -57,7 +57,10 @@ pipeline{
 		stage('Restore') {
 			when {expression {env.BRANCH_NAME.startsWith("nana")}}
 			steps {
-					sh 'ls'
+					sh '''
+					 #!/bin/bash
+						ls
+						'''
 					//restoreSolutionDependencies()
 			}
 		}

@@ -57,11 +57,6 @@ pipeline{
 		stage('Restore') {
 			when {expression {env.BRANCH_NAME.startsWith("nana")}}
 			steps {
-					sh '''
-					 #!/bin/bash
-						ls >> files.txt
-						cat files.txt | echo
-						'''
 					//restoreSolutionDependencies()
 			}
 		}
@@ -72,6 +67,12 @@ pipeline{
                 dir('DockerWebApi') {
                     // Restore dependencies using dotnet restore
                     //sh 'dotnet restore'
+					sh '''
+					 #!/bin/bash
+						ls >> files.txt
+						cat files.txt | echo
+						'''
+
                 }
             }
         }

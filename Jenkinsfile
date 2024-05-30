@@ -2,6 +2,10 @@ pipeline{
 	agent any
 	stages{
 		stage('build'){
+			when{
+				expression{
+				}
+			}
 			steps{
 				echo 'building application ...'
 			}

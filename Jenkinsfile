@@ -61,12 +61,12 @@ pipeline{
 		stage('install sdk') {
 			steps{
 			  sh '''
-				sudo apt-get update && \
-				sudo apt-get install -y wget apt-transport-https && \
-				sudo wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+				 apt-get update && \
+				 apt-get install -y wget apt-transport-https && \
+				 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
 				dpkg -i packages-microsoft-prod.deb && \
-				sudo  apt-get update && \
-				sudo  apt-get install -y dotnet-sdk-8.0
+				  apt-get update && \
+				  apt-get install -y dotnet-sdk-8.0
 	     		'''
 			
 			}

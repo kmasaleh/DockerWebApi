@@ -60,6 +60,16 @@ pipeline{
             }
         }
         
+		stage('install sdk') {
+		  sh '''
+			RUN apt-get update && \
+			apt-get install -y wget apt-transport-https && \
+			wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+			dpkg -i packages-microsoft-prod.deb && \
+			apt-get update && \
+			apt-get install -y dotnet-sdk-8.0
+			'''
+		}
 		
 		stage('Restore') {
 			when {expression {env.BRANCH_NAME.startsWith("nana")}}
@@ -70,6 +80,10 @@ pipeline{
 						def fileList = sh(script: 'ls', returnStdout: true).trim()
 					    echo "Available files in current directory: ${fileList}"
 				    }
+
+					sh '''
+					 dotnet restore
+					'''
 
 			}
 
@@ -95,6 +109,10 @@ pipeline{
 			}
 			steps{
 				echo 'building application nana branch...'
+				sh '''
+					 dotnet build
+					'''
+
 			}
 		}
 		stage('test'){

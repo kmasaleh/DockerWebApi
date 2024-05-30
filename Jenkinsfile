@@ -1,3 +1,15 @@
+def  getGitChanges(){
+	echo 'cecking if code changed ...'
+	if(currentBuild.changeSets.size() > 0) {
+		return true
+	}
+	else {
+		
+		//No changes
+		return false
+	}
+}
+
 CODE_CHNAGES = getGitChanges()
 pipeline{
 	agent any
@@ -8,7 +20,7 @@ pipeline{
 				enableContentSecurityPolicyForReport()
 				deleteDir()
 				// cleanWs()
-				echo 'initiating application nana branch ... ${env.BRANCH_NAME} '
+				echo 'initiating application nana branch ... ${env.BRANCH_NAME} build bo ${env.BUILD_NUMBER}'
 			}
 		}
 		stage('build'){

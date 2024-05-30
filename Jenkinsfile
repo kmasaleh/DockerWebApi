@@ -19,7 +19,7 @@ pipeline{
 		stage('Init') {
 			//when {expression {env.BRANCH_NAME.startsWith("nana")}}
 			steps {
-				enableContentSecurityPolicyForReport()
+			//	enableContentSecurityPolicyForReport()
 				deleteDir()
 				// cleanWs()
 				//echo 'BRANCH_START_WTH var is ${env.BRANCH_START_WTH}'

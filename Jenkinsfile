@@ -49,7 +49,7 @@ pipeline{
                     echo "The current build number is: ${buildNumber}"
 					def brnachName = env.BRANCH_NAME
 					echo "branch name is ${brnachName}"
-
+					sh 'ls -la'
 				}
 			}
 		}

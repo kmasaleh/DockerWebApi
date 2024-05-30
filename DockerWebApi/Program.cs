@@ -24,7 +24,7 @@ app.MapGet("/readLogs", (HttpContext httpContext) =>
     {
         httpContext.Response.WriteAsync("Logs file dos not exist!");
         httpContext.Response.StatusCode = 404;
-        return null; 
+        return string.Empty; 
     }
     var logs= File.ReadAllText(filePath);
     return logs;

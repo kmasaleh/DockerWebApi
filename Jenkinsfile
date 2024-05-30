@@ -1,15 +1,15 @@
 def  getGitChanges(){
-	echo 'cecking if code changed ...'
-	if(currentBuild.changeSets.size() > 0) {
-		echo 'code changed ...'
-		return true
-	}
+	echo 'checking if code changed ...'
+	def changes = false
+    changes = currentBuild.changeSets.any { it.items.length > 0 }
+	if (changes) {
+          echo "Changes detected."
+         // Add your actions here for when changes are detected
+    } 
 	else {
-		
-		//No changes
-		echo 'code did not changed ...'
-		return false
-	}
+         echo "No changes detected."
+	      // Add your actions here for when no changes are detected
+    }
 }
 
 CODE_CHNAGES = getGitChanges()

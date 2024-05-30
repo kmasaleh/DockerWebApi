@@ -28,7 +28,7 @@ def restoreSolutionDependencies() {
 CODE_CHNAGES = getGitChanges()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 pipeline{
-
+	agent any
 	 parameters {
 		string(name:'PRJ_TARGETED_FRAMEWORK',defaultValue:'8',description:'.Net Framework')
         string(name: 'BRANCH_NAME', defaultValue: 'nana', description: 'Branch to build')

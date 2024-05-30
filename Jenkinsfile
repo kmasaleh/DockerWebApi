@@ -19,7 +19,7 @@ def  getGitChanges(){
 def restoreSolutionDependencies() {
   echo "solution : ${params.PRJ_SLN_NAME}"
   echo "framework : ${PRJ_TARGETED_FRAMEWORK}"
-  dotnetRestore project: "${params.PRJ_SLN_NAME}.sln", sdk: "dotnet${PRJ_TARGETED_FRAMEWORK}", verbosity: 'n'
+  dotnetRestore project: "DockWebApi.sln", sdk: "dotnet${PRJ_TARGETED_FRAMEWORK}", verbosity: 'n'
  // sh """#!/bin/bash
  // ${DOTNET_CLI_HOME}//dotnet restore ${params.PRJ_SLN_NAME}.sln
  // """
@@ -32,6 +32,7 @@ pipeline{
 
 
 	 parameters {
+		string(name:PRJ_TARGETED_FRAMEWORK,defaultValue:'8',description)
         string(name: 'BRANCH_NAME', defaultValue: 'nana', description: 'Branch to build')
         booleanParam(name: 'DEPLOY_TO_PROD', defaultValue: true, description: 'Deploy to production')
     }

@@ -53,6 +53,13 @@ pipeline{
 				}
 			}
 		}
+		stage('Checkout Branch') {
+            steps {
+                // Check out a specific branch using the 'checkout' step
+                checkout([$class: 'GitSCM', branches: [[name: env.BRANCH_NAME]], userRemoteConfigs: [[url: 'https://github.com/kmasaleh/DockerWebApi.git']]])
+            }
+        }
+        
 		
 		stage('Restore') {
 			when {expression {env.BRANCH_NAME.startsWith("nana")}}
@@ -74,11 +81,6 @@ pipeline{
                 dir('DockerWebApi') {
                     // Restore dependencies using dotnet restore
                     //sh 'dotnet restore'
-					sh '''
-					 #!/bin/bash
-						ls >> files.txt
-						cat files.txt | echo
-						'''
 
                 }
             }

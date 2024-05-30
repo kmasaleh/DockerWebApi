@@ -63,7 +63,7 @@ pipeline{
 		stage('install sdk') {
 			steps{
 			  sh '''
-				RUN apt-get update && \
+				 apt-get update && \
 				apt-get install -y wget apt-transport-https && \
 				wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
 				dpkg -i packages-microsoft-prod.deb && \
